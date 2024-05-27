@@ -24,5 +24,10 @@ public class PostController {
         return ResponseEntity.ok(postService.getPostById(id));
     }
 
+    @PutMapping("/update")
+    public ResponseEntity<PostDto> update(@RequestBody PostDto post) {
+        return ResponseEntity.ok(postService.update(post));
+    }
+
 
 }

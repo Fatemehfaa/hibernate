@@ -23,5 +23,15 @@ public class AddressController {
         return ResponseEntity.ok(addressService.findById(id));
      }
 
+     @PutMapping("/update")
+     public ResponseEntity<AddressDto> update(@RequestBody AddressDto addressDto) {
+        return ResponseEntity.ok(addressService.updateAddress(addressDto));
+     }
+
+     @DeleteMapping("/deleteById/{id}")
+     public void deleteById(@PathVariable Long id) {
+        addressService.deleteById(id);
+     }
+
 
 }
