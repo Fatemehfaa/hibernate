@@ -1,0 +1,11 @@
+spring:
+  application:
+    name: hibernate
+  datasource:
+    password: 123456
+    url: jdbc:mysql://localhost:3306/hibernate
+    username: root
+  jpa:
+    database-platform: org.hibernate.dialect.MySQL8Dialect
+    hibernate:
+      ddl-auto: create
