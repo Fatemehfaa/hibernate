@@ -52,14 +52,10 @@ public class RunnerConfig implements CommandLineRunner {
 
         );
 
-        System.out.println(tags);
-//
-//        PostEntity post = postRepository.save(PostEntity.builder()
-//                .title("art")
-//                .tags(tags)
-//                .user(user)
-//                .build());
-
-
+        PostEntity post = postRepository.save(PostEntity.builder()
+                .title("art")
+                .tags(tags)
+                .user(user)
+                .build());
     }
 }

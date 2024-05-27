@@ -30,7 +30,7 @@ public class PostEntity {
     @JoinColumn(name = "user_id")
     UserEntity user;
 
-    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.DETACH})
+    @ManyToMany(cascade = {CascadeType.MERGE, CascadeType.REFRESH, CascadeType.DETACH})
     @JoinTable(name= "post_tag"
     ,joinColumns = @JoinColumn(name = "post_id")
     ,inverseJoinColumns = @JoinColumn(name = "tag_id"))

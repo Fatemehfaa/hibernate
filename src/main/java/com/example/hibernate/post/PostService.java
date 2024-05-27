@@ -2,6 +2,7 @@ package com.example.hibernate.post;
 
 import com.example.hibernate.tag.TagEntity;
 import com.example.hibernate.tag.TagRepository;
+import jakarta.transaction.Transactional;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
@@ -16,14 +17,8 @@ import java.util.List;
 @RequiredArgsConstructor
 public class PostService {
     PostRepository postRepository;
-    TagRepository tagRepository;
 
     public PostDto savePost(PostEntity post) {
-        List<TagEntity> tags = new ArrayList<>();
-        for (TagEntity tag : post.getTags()) {
-            tagRepository.findById(tag.getId()).ifPresent(tags::add);
-        }
-        post.setTags(tags);
         return PostMapper.INSTANCE.toDto( postRepository.save(post));
     }
 
