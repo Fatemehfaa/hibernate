@@ -31,4 +31,8 @@ public class PostService {
         return PostMapper.INSTANCE.toDto(postRepository.save(post));
     }
 
+    public void deleteById(Long id) {
+        postRepository.deleteById(id);
+    }
+
 }

@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 import java.util.Optional;
 
 @Repository
-public interface PostRepository extends JpaRepository<PostEntity, Integer> {
+public interface PostRepository extends JpaRepository<PostEntity, Long> {
     Optional<PostEntity> findById(long id);
 }

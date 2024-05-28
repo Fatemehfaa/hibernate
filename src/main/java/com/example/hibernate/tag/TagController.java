@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 @FieldDefaults(level = AccessLevel.PRIVATE , makeFinal = true)
 @RequiredArgsConstructor
 @RequestMapping("/tag")
+
 public class TagController {
      TagService tagService;
 
@@ -23,4 +24,17 @@ public class TagController {
      public ResponseEntity<TagDto> getTagById(@PathVariable Long id) {
          return ResponseEntity.ok(tagService.getTagById(id));
      }
+
+
+     @PutMapping("/update")
+    public ResponseEntity<TagDto> updateTag(@RequestBody TagDto tagDto) {
+         return ResponseEntity.ok( tagService.update(tagDto));
+     }
+
+     @DeleteMapping("/delete/{id}")
+    public void delete(@PathVariable Long id) {
+         tagService.deleteTagById(id);
+     }
+
+
 }

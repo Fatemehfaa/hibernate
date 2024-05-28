@@ -15,14 +15,23 @@ public class UserService {
         return UserMapper.INSTANCE.toDto(userRepository.findByName(name).orElseThrow());
     }
 
-
     public UserDto saveUser(UserDto userDto) {
         return UserMapper.INSTANCE.toDto(userRepository.save(UserMapper.INSTANCE.toEntity(userDto)));
     }
 
-
     public UserDto getUserById(Long id) {
         return UserMapper.INSTANCE.toDto(userRepository.findById(id).orElseThrow());
+    }
+
+
+    public UserDto update(UserDto userDto) {
+        UserEntity userEntity = userRepository.findById(userDto.getId()).orElseThrow();
+        UserMapper.INSTANCE.updateToDto(userEntity , userDto);
+        return UserMapper.INSTANCE.toDto(userRepository.save(userEntity));
+    }
+
+    public void delete(Long id) {
+        userRepository.deleteById(id);
     }
 
 

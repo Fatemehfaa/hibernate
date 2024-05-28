@@ -33,10 +33,17 @@ public class UserController {
     }
 
 
+    @PutMapping("/update")
+    public ResponseEntity<UserDto> update(@RequestBody UserDto user){
+        return ResponseEntity.ok(userService.update(user));
+    }
 
 
-
-
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<UserDto> delete(@PathVariable long id){
+        userService.delete(id);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
 
 
 
