@@ -26,7 +26,7 @@ public class PostEntity {
     Long id;
     String title;
 
-    @ManyToOne(cascade = CascadeType.MERGE)
+    @ManyToOne(cascade = CascadeType.MERGE )
     @JoinColumn(name = "user_id")
     UserEntity user;
 
