@@ -6,6 +6,8 @@ import lombok.experimental.FieldDefaults;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @FieldDefaults(level = AccessLevel.PRIVATE , makeFinal = true)
 @RequiredArgsConstructor
@@ -32,6 +34,13 @@ public class AddressController {
      public void deleteById(@PathVariable Long id) {
         addressService.deleteById(id);
      }
+
+     @GetMapping("/getAllAddress/")
+     public ResponseEntity<List<AddressDto>> getAllAddresses() {
+        return ResponseEntity.ok(addressService.findAllAddress());
+     }
+
+
 
 
 }
