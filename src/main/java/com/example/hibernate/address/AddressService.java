@@ -1,18 +1,13 @@
 package com.example.hibernate.address;
 
-import com.example.hibernate.BaseDto;
 import lombok.AccessLevel;
-import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import org.redisson.api.RMap;
 import org.redisson.api.RedissonClient;
 
 import org.springframework.stereotype.Service;
 
-import java.util.Collection;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
@@ -73,13 +68,9 @@ public class AddressService {
         }
         List<AddressDto> all = AddressMapper.INSTANCE.mapAllToDto(addressRepository.findAll());
 
-        Function<AddressDto,Long> longFunction = BaseDto::getId;
-        Function<AddressDto,AddressDto> dtoFunction = AddressDto -> AddressDto;
+        rMap.putAll(all.stream().collect(Collectors.toMap(AddressDto::getId, Function.identity())));
 
-        rMap.putAll(all.stream()
-                .collect(Collectors.toMap(BaseDto::getId, AddressDto -> AddressDto)));
         return all;
-
     }
 
 

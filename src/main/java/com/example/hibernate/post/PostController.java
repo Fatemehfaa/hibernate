@@ -1,10 +1,13 @@
 package com.example.hibernate.post;
 
+import com.example.hibernate.address.AddressDto;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @FieldDefaults(level = AccessLevel.PRIVATE , makeFinal= true)
@@ -33,6 +36,12 @@ public class PostController {
     public void delete(@PathVariable Long id) {
     postService.deleteById(id);
     }
+
+    @GetMapping("/getAllPosts/")
+    public ResponseEntity<List<PostDto>> getAllPosts() {
+        return ResponseEntity.ok(postService.getAllPosts());
+    }
+
 
 
 }
