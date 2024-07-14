@@ -3,11 +3,13 @@ package com.example.hibernate.address;
 import lombok.AccessLevel;
 import lombok.experimental.FieldDefaults;
 import org.redisson.api.RMap;
+import org.redisson.api.RMapCache;
 import org.redisson.api.RedissonClient;
 
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
@@ -69,6 +71,19 @@ public class AddressService {
         List<AddressDto> all = AddressMapper.INSTANCE.mapAllToDto(addressRepository.findAll());
 
         rMap.putAll(all.stream().collect(Collectors.toMap(AddressDto::getId, Function.identity())));
+
+        return all;
+    }
+
+    public List<AddressDto> findAllAddressCache() {
+        RMapCache<Long, AddressDto> rMapCache = redissonClient.getMapCache("addresses2");
+
+        if (!rMapCache.isEmpty()) {
+            return rMapCache.values().stream().toList();
+        }
+        List<AddressDto> all = AddressMapper.INSTANCE.mapAllToDto(addressRepository.findAll());
+
+        rMapCache.putAll(all.stream().collect(Collectors.toMap(AddressDto::getId, Function.identity())), 6, TimeUnit.SECONDS);
 
         return all;
     }

@@ -40,7 +40,10 @@ public class AddressController {
         return ResponseEntity.ok(addressService.findAllAddress());
      }
 
-
+    @GetMapping("/getAllAddressCached")
+    public ResponseEntity<List<AddressDto>> getAllAddressCached() {
+        return ResponseEntity.ok(addressService.findAllAddressCache());
+    }
 
 
 }
