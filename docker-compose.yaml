@@ -2,7 +2,7 @@ version: latest
 
 services:
   redis:
-    image: redis:7.0.13-alpine
+    image: redis
     container_name: redis
     restart: always
     volumes:
