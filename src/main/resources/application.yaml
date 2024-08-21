@@ -2,10 +2,14 @@ spring:
   application:
     name: hibernate
   datasource:
-    password: 123456
-    url: jdbc:mysql://mysql:3306/hibernate
-    username: root
+    password: ${DB_PASS:123456}
+    url: jdbc:mysql://${DB_HOST:127.0.0.1}:${DB_PORT:3306}/${DB_DATABASE:hibernate}
+    username: ${DB_USER:root}
   jpa:
     database-platform: org.hibernate.dialect.MySQL8Dialect
     hibernate:
       ddl-auto: create
+
+redis:
+  host: ${REDIS_HOST:127.0.0.1}
+  port: ${REDIS_PORT:6379}
