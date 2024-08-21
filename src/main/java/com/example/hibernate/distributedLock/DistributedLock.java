@@ -6,7 +6,7 @@ import org.redisson.api.RedissonClient;
 import org.redisson.config.Config;
 
 public class DistributedLock {
-    public static void main(String[] args) {
+  /*  public static void main(String[] args) {
 
         // Configuring Redis
         Config config = new Config();
@@ -30,6 +30,6 @@ public class DistributedLock {
 
         // Closing Redisson client
         redisson.shutdown();
-    }
+    }*/
 
 }

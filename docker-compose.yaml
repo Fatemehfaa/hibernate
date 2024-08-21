@@ -1,0 +1,53 @@
+version: latest
+
+services:
+  redis:
+    image: "redis:alpine"
+    container_name: redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis:/data
+    networks:
+      - app-network
+    restart: always
+
+  mysql:
+    image: "mysql"
+    container_name: mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: 123456
+      MYSQL_DATABASE: hibernate
+      MYSQL_USER: hibernate
+      MYSQL_PASSWORD: 123456
+    ports:
+      - "3300:3306"
+    volumes:
+      - mysql:/var/lib/mysql
+    networks:
+      - app-network
+    restart: always
+
+  api:
+    container_name: routing-api
+    depends_on:
+      - redis
+      - mysql
+    build: ./
+    ports:
+      - 80:8080
+    environment:
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+      - DB_HOST=mysql
+      - DB_PORT=3306
+
+networks:
+  app-network:
+    driver: bridge
+
+volumes:
+  redis:
+    driver: local
+  mysql:
+    driver: local

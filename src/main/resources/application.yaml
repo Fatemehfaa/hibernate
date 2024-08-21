@@ -3,7 +3,7 @@ spring:
     name: hibernate
   datasource:
     password: 123456
-    url: jdbc:mysql://localhost:3306/hibernate
+    url: jdbc:mysql://mysql:3306/hibernate
     username: root
   jpa:
     database-platform: org.hibernate.dialect.MySQL8Dialect

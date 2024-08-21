@@ -7,7 +7,7 @@ import java.sql.ResultSet;
 
 public class DistributedLockDataBase {
 
-    public static void main(String[] args) throws Exception {
+/*    public static void main(String[] args) throws Exception {
         // Database connection
         Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/mydb", "user", "password");
 
@@ -28,5 +28,5 @@ public class DistributedLockDataBase {
             System.out.println("Lock released.");
             connection.close();
         }
-    }
+    }*/
 }
