@@ -15,8 +15,6 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: 123456
       MYSQL_DATABASE: hibernate
-      MYSQL_USER: hibernate
-      MYSQL_PASSWORD: 123456
     volumes:
       - mysql:/var/lib/mysql
     restart: always
