@@ -10,6 +10,7 @@ services:
       - redis:/data
     networks:
       - app-network
+    command: redis-server --save 60 1 --loglevel warning
     restart: always
 
   mysql:
@@ -29,13 +30,13 @@ services:
     restart: always
 
   api:
-    container_name: routing-api
+    container_name: hibernate-api
     depends_on:
       - redis
       - mysql
     build: ./
     ports:
-      - 80:8080
+      - 8082:8080
     environment:
       - REDIS_HOST=redis
       - REDIS_PORT=6379
