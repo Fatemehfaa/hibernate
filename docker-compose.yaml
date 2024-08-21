@@ -33,7 +33,7 @@ services:
       - DB_HOST=mysql
       - DB_PORT=3306
       - DB_USER=root
-      - DB_PASS=12356
+      - DB_PASS=123456
       - DB_DATABASE=hibernate
 
 volumes:
