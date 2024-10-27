@@ -1,8 +1,6 @@
 package com.example.hibernate.runner;
 
-import com.example.hibernate.address.AddressDto;
 import com.example.hibernate.address.AddressEntity;
-import com.example.hibernate.address.AddressMapper;
 import com.example.hibernate.address.AddressRepository;
 import com.example.hibernate.post.PostEntity;
 import com.example.hibernate.post.PostRepository;
